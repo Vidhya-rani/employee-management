@@ -1,0 +1,31 @@
+# Employee Management System
+
+## About the Project
+
+The Employee Management System is a Java-based backend application developed using Spring Boot to simplify the management of employee information. It provides a structured way to store, access, and manage employee records through REST APIs.
+
+The project demonstrates how to build a backend application using Java and Spring Boot, organize application code into separate layers, and expose endpoints that can be accessed by client applications or tested using Postman.
+
+## Objectives
+- Simplify employee information management.
+- Develop REST APIs for employee-related operations.
+- Organize backend logic using a maintainable project structure.
+- Practice Java, Spring Boot, and Maven in a real-world project.
+
+## Technology Stack
+- **Java** – Implements the application logic.
+- **Spring Boot** – Builds and runs the backend application.
+- **Spring Web** – Supports REST API development.
+- **Maven** – Manages dependencies and builds the project.
+- **Git and GitHub** – Track changes and maintain the source code.
+- **Postman** – Tests REST API endpoints.
+
+## How It Works
+
+The client sends an HTTP request to an API endpoint. The Spring Boot application processes the request and returns an appropriate HTTP response. Postman can be used to send requests and verify the API behavior.
+
+## Future Enhancements
+- Add employee CRUD operations (Create, Read, Update, and Delete).
+- Integrate a database for persistent employee records.
+- Add validation and exception handling.
+- Implement authentication and authorization.
