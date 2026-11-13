@@ -47,7 +47,7 @@ class EmployeeServiceTest {
         request.setName("Rahul");
         request.setEmail("rahul@gmail.com");
         request.setDepartment("IT");
-        request.setSalary(60000);
+        request.setSalary(60000.0);
 
         Employee savedEmployee = new Employee(
                 1L,
@@ -136,7 +136,7 @@ class EmployeeServiceTest {
         request.setName("Rahul Kumar");
         request.setEmail("rahulkumar@gmail.com");
         request.setDepartment("IT");
-        request.setSalary(70000);
+        request.setSalary(70000.0);
 
         Employee updatedEmployee = new Employee(
                 1L,

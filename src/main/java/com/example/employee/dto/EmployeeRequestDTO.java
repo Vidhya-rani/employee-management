@@ -3,7 +3,7 @@ package com.example.employee.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-
+import jakarta.validation.constraints.NotNull;
 public class EmployeeRequestDTO {
 
     @NotBlank(message = "Name is required")
@@ -16,8 +16,9 @@ public class EmployeeRequestDTO {
     @NotBlank(message = "Department is required")
     private String department;
 
+    @NotNull(message = "Salary is required")
     @Positive(message = "Salary must be greater than 0")
-    private double salary;
+    private Double salary;
 
     public EmployeeRequestDTO() {
     }
@@ -46,11 +47,11 @@ public class EmployeeRequestDTO {
         this.department = department;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 }
