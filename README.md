@@ -1,110 +1,203 @@
 # Employee Management System
 
-## Project Description
+A RESTful backend application built using **Java, Spring Boot, Spring Security, JWT, Spring Data JPA, Hibernate, and MySQL**. This project provides employee management operations, secure user authentication, database integration, and REST API endpoints.
 
-The Employee Management System is a backend application developed using Java and Spring Boot to manage employee information through REST APIs.
+## Project Overview
 
-The application allows users to register and log in securely using JWT authentication. Authenticated users can perform employee operations such as adding new employees, retrieving employee details, updating records, deleting employees, searching by name, and filtering employees by department and salary.
+The Employee Management System is designed to manage employee information through REST APIs. It supports creating, retrieving, updating, deleting, searching, and filtering employee records.
 
-Employee and user information is stored in a MySQL database. The application follows a layered architecture using Controller, Service, and Repository layers to separate API handling, business logic, and database operations.
-
-## Features
-
-- User registration and login.
-- JWT-based authentication to secure employee APIs.
-- Create, retrieve, update, and delete employee records.
-- Search employees by name.
-- Filter employees by department.
-- Retrieve employees based on salary.
-- Pagination and sorting.
-- Input validation and global exception handling.
+The application also implements JWT-based authentication to secure employee-related endpoints.
 
 ## Technologies Used
 
-- Java 21
-- Spring Boot 4.1.1
-- Spring Web MVC
-- Spring Data JPA
-- Hibernate
-- MySQL 8
-- Spring Security
-- JWT
-- Jakarta Validation
-- Maven
-- JUnit 5 and Mockito
-- Postman
+| Technology | Purpose |
+|---|---|
+| Java 21 | Core programming language used to implement application logic and OOP concepts |
+| Spring Boot | Simplifies application configuration and development |
+| Spring Web | Creates REST APIs and handles HTTP requests and responses |
+| Spring Security | Secures endpoints and manages authentication |
+| JWT | Provides token-based authentication for protected APIs |
+| Spring Data JPA | Simplifies database operations using repository interfaces |
+| Hibernate | Maps Java objects to database tables |
+| MySQL 8 | Stores employee and user account information |
+| Maven | Manages project dependencies and builds |
+| JUnit 5 | Supports unit and application testing |
+| Mockito | Mocks dependencies during unit testing |
+| AssertJ | Provides readable test assertions |
+| Postman | Tests REST API endpoints |
+| Git & GitHub | Version control and source code hosting |
 
-## How the Application Works
+## Features
 
-1. A user registers using the registration API.
-2. The user logs in with their username and password.
-3. Spring Security authenticates the credentials and generates a JWT token.
-4. The client includes the JWT token in the Authorization header when accessing employee APIs.
-5. The application validates the token and processes the request.
-6. Employee information is retrieved from or stored in the MySQL database.
+- **Employee CRUD Operations:** Create, retrieve, update, and delete employee records.
+- **JWT Authentication:** Register and log in users to obtain authentication tokens.
+- **Spring Security:** Protect employee APIs using token-based authentication.
+- **Employee Search:** Search employees by name.
+- **Salary Filtering:** Retrieve employees whose salary is greater than a specified amount.
+- **Department Filtering:** Retrieve employees based on department.
+- **Pagination and Sorting:** Retrieve employee records in pages and sort the results.
+- **Input Validation:** Validate incoming employee request data.
+- **Global Exception Handling:** Handle application exceptions consistently.
+- **DTO Pattern:** Separate API request and response objects from entity classes.
 
-## Project Structure
+## Application Architecture
 
-- **controller** – Handles REST API requests and responses.
-- **service** – Contains business logic.
-- **repository** – Handles database operations.
-- **entity** – Defines Employee and AppUser database entities.
-- **dto** – Contains request and response objects.
-- **config** – Contains security configuration.
-- **exception** – Handles application exceptions.
+The application follows a layered architecture to separate responsibilities and make the code easier to maintain.
 
-## API Endpoints
+```text
+Client (Postman)
+      |
+      v
+Controller Layer
+      |
+      v
+Service Layer
+      |
+      v
+Repository Layer
+      |
+      v
+MySQL Database
+```
 
-### Authentication
+### Main Packages
+
+| Package | Responsibility |
+|---|---|
+| config | Security and application configuration |
+| controller | Handles REST API requests |
+| dto | Contains request and response objects |
+| entity | Defines database entities |
+| exception | Handles application exceptions |
+| repository | Provides database access |
+| service | Contains business logic |
+
+## REST API Endpoints
+
+### Authentication APIs
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/auth/register` | Register a user |
-| POST | `/auth/login` | Login and generate JWT token |
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Authenticate a user and generate a JWT |
 
-### Employee Management
+### Employee APIs
 
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/employees` | Create employee |
 | GET | `/employees` | Retrieve all employees |
-| GET | `/employees/{id}` | Retrieve employee by ID |
-| PUT | `/employees/{id}` | Update employee |
-| DELETE | `/employees/{id}` | Delete employee |
-| GET | `/employees/department/{department}` | Filter by department |
-| GET | `/employees/salary/{salary}` | Filter by salary |
-| GET | `/employees/search?name={name}` | Search by employee name |
+| GET | `/employees/{id}` | Retrieve an employee by ID |
+| POST | `/employees` | Create a new employee |
+| PUT | `/employees/{id}` | Update employee details |
+| DELETE | `/employees/{id}` | Delete an employee |
+| GET | `/employees/search?name=Arjun` | Search employees by name |
+| GET | `/employees/salary/50000` | Find employees with salary greater than the specified amount |
+| GET | `/employees/department/IT` | Filter employees by department |
+| GET | `/employees?page=0&size=5&sortBy=id&direction=asc` | Retrieve employees using pagination and sorting |
 
-All employee endpoints require a valid JWT token.
+## Database Design
+
+**Database:** `employee_db`
+
+### Employee Table
+
+| Column | Description |
+|---|---|
+| id | Employee primary key |
+| name | Employee name |
+| email | Employee email address |
+| department | Employee department |
+| salary | Employee salary |
+
+### Users Table
+
+| Column | Description |
+|---|---|
+| id | User primary key |
+| username | Unique username |
+| password | BCrypt-hashed password |
+| role | User role |
+
+## Authentication Flow
+
+1. A user registers through `/auth/register`.
+2. The user logs in through `/auth/login`.
+3. The application authenticates the credentials.
+4. A JWT is generated after successful authentication.
+5. The client sends the token in the Authorization header when accessing protected APIs.
+
+Example header:
+
+```http
+Authorization: Bearer <your-jwt-token>
+```
+
+## Testing
+
+The application was tested using Postman and automated tests.
+
+- REST API testing using Postman.
+- Unit testing of service-layer functionality.
+- Controller testing.
+- JUnit 5, Mockito, and AssertJ.
+
+**Test result:** 18 automated tests passed (9 controller tests and 9 service tests).
+
+## Prerequisites
+
+Make sure the following are installed:
+
+- Java 21 or later
+- MySQL 8
+- Maven
+- Postman (for API testing)
 
 ## How to Run the Project
 
-**Prerequisites:** Java 21, Maven, and MySQL 8.
+**1. Clone the repository**
 
-1. Clone the repository:
+```bash
+git clone https://github.com/Vidhya-rani/employee-management.git
+```
 
-   ```bash
-   git clone <https://github.com/Vidhya-rani/employee-management>
-   ```
+**2. Navigate to the project directory**
 
-2. Create the database:
+```bash
+cd employee-management
+```
 
-   ```sql
-   CREATE DATABASE employee_db;
-   ```
+**3. Create the database**
 
-3. Configure the MySQL connection and JWT secret in `application.properties`. Use your own credentials and keep secrets out of GitHub.
+```sql
+CREATE DATABASE employee_db;
+```
 
-4. Run the application:
+**4. Configure environment variables**
 
-   ```bash
-   mvn spring-boot:run
-   ```
+Set the following environment variables before starting the application:
 
-5. The application runs at:
+```text
+DB_USERNAME=your_mysql_username
+DB_PASSWORD=your_mysql_password
+JWT_SECRET=your_secure_jwt_secret
+```
 
-   `http://localhost:8003`
+Do not commit actual passwords, JWT secrets, or access tokens to GitHub.
 
-## API Testing
+**5. Run the application**
 
-The REST APIs were tested using Postman, and automated tests were implemented using JUnit 5 and Mockito.
+Using Maven:
+
+```bash
+mvn spring-boot:run
+```
+
+The application runs at:
+
+```text
+http://localhost:8003
+```
+
+GitHub: [Vidhya-rani](https://github.com/Vidhya-rani)
+
+Project Repository: [Employee Management System](https://github.com/Vidhya-rani/employee-management)
